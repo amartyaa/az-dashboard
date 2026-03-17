@@ -1,0 +1,930 @@
+{
+  "apiVersion": "dashboard.grafana.app/v2beta1",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "ambzv9z",
+    "namespace": "stacks-1544753",
+    "uid": "1a6ad1ab-0646-4c80-a3d5-9cd6c0f091f9",
+    "resourceVersion": "1773720333151117",
+    "generation": 1,
+    "creationTimestamp": "2026-03-17T04:05:33Z",
+    "labels": {
+      "grafana.app/deprecatedInternalID": "2633166658265088"
+    },
+    "annotations": {
+      "grafana.app/createdBy": "user:dfewo92g6p5vkd",
+      "grafana.app/folder": "",
+      "grafana.app/saved-from-ui": "Grafana Cloud (steady)"
+    }
+  },
+  "spec": {
+    "annotations": [
+      {
+        "kind": "AnnotationQuery",
+        "spec": {
+          "query": {
+            "kind": "DataQuery",
+            "group": "grafana",
+            "version": "v0",
+            "datasource": {
+              "name": "-- Grafana --"
+            },
+            "spec": {}
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "builtIn": true,
+          "legacyOptions": {
+            "type": "dashboard"
+          }
+        }
+      }
+    ],
+    "cursorSync": "Off",
+    "editable": true,
+    "elements": {
+      "panel-1": {
+        "kind": "Panel",
+        "spec": {
+          "id": 1,
+          "title": "Repositories",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "grafana-azuredevops-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "bff64crgzkyrkd"
+                      },
+                      "spec": {
+                        "projectID": "$project",
+                        "queryType": "git/repositories/list"
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "organize",
+                  "spec": {
+                    "id": "organize",
+                    "options": {
+                      "excludeByName": {
+                        "DefaultBranch": true,
+                        "Description": true,
+                        "Id": false,
+                        "IsFork": true,
+                        "Project": true,
+                        "RemoteUrl": true,
+                        "SshUrl": true,
+                        "State": true,
+                        "URL": true,
+                        "Url": true,
+                        "WebUrl": true
+                      },
+                      "indexByName": {},
+                      "renameByName": {
+                        "Name": "Repository name"
+                      }
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "table",
+            "version": "13.0.0-22843068776.patch2",
+            "spec": {
+              "options": {
+                "cellHeight": "sm",
+                "showHeader": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "links": [
+                    {
+                      "targetBlank": true,
+                      "title": "",
+                      "url": "$url/$org/$project/_git/${__data.fields.Id}"
+                    }
+                  ],
+                  "custom": {
+                    "align": "auto",
+                    "cellOptions": {
+                      "type": "auto"
+                    },
+                    "footer": {
+                      "reducers": []
+                    },
+                    "inspect": false
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Id"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hideFrom.viz",
+                        "value": true
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Size"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "decbytes"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-4": {
+        "kind": "Panel",
+        "spec": {
+          "id": 4,
+          "title": "Build results",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "grafana-azuredevops-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "bff64crgzkyrkd"
+                      },
+                      "spec": {
+                        "projectID": "$project",
+                        "queryType": "build/builds/list"
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "groupBy",
+                  "spec": {
+                    "id": "groupBy",
+                    "options": {
+                      "fields": {
+                        "Id": {
+                          "aggregations": [
+                            "count"
+                          ],
+                          "operation": "aggregate"
+                        },
+                        "Result": {
+                          "aggregations": [],
+                          "operation": "groupby"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "organize",
+                  "spec": {
+                    "id": "organize",
+                    "options": {
+                      "excludeByName": {},
+                      "indexByName": {},
+                      "renameByName": {
+                        "Id (count)": ""
+                      }
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "piechart",
+            "version": "13.0.0-22843068776.patch2",
+            "spec": {
+              "options": {
+                "displayLabels": [],
+                "legend": {
+                  "displayMode": "list",
+                  "placement": "right",
+                  "showLegend": true
+                },
+                "pieType": "donut",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": true
+                },
+                "sort": "desc",
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "succeeded"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "green",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "failed"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "red",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "canceled"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "#c3c3c3",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-5": {
+        "kind": "Panel",
+        "spec": {
+          "id": 5,
+          "title": "Builds",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "grafana-azuredevops-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "bff64crgzkyrkd"
+                      },
+                      "spec": {
+                        "buildsFilter": {
+                          "repositoryType": ""
+                        },
+                        "projectID": "$project",
+                        "queryType": "build/builds/list"
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "calculateField",
+                  "spec": {
+                    "id": "calculateField",
+                    "options": {
+                      "alias": "Duration",
+                      "binary": {
+                        "left": "FinishTime",
+                        "operator": "-",
+                        "reducer": "sum",
+                        "right": "StartTime"
+                      },
+                      "mode": "binary",
+                      "reduce": {
+                        "reducer": "sum"
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "calculateField",
+                  "spec": {
+                    "id": "calculateField",
+                    "options": {
+                      "alias": "Queue time",
+                      "binary": {
+                        "left": "StartTime",
+                        "operator": "-",
+                        "reducer": "sum",
+                        "right": "QueueTime"
+                      },
+                      "mode": "binary",
+                      "reduce": {
+                        "reducer": "sum"
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "organize",
+                  "spec": {
+                    "id": "organize",
+                    "options": {
+                      "excludeByName": {
+                        "FinishTime": true,
+                        "Id": false,
+                        "KeepForever": true,
+                        "Priority": true,
+                        "Project": false,
+                        "Quality": true,
+                        "QueueTime": true,
+                        "Reason": true,
+                        "RequestedBy": true,
+                        "RequestedFor": true,
+                        "RetainedByRelease": true,
+                        "SourceBranch": true,
+                        "SourceVersion": true,
+                        "StartTime": true,
+                        "Status": true,
+                        "Tags": true,
+                        "Uri": true,
+                        "Url": true
+                      },
+                      "indexByName": {},
+                      "renameByName": {}
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "table",
+            "version": "13.0.0-22843068776.patch2",
+            "spec": {
+              "options": {
+                "cellHeight": "sm",
+                "showHeader": true,
+                "sortBy": []
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "mappings": [
+                    {
+                      "type": "value",
+                      "options": {
+                        "canceled": {
+                          "text": "🚫 canceled",
+                          "index": 0
+                        },
+                        "succeeded": {
+                          "text": "✅ succeeded",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": "failed",
+                        "result": {
+                          "text": "❌ failed",
+                          "index": 2
+                        }
+                      }
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "transparent"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "links": [
+                    {
+                      "targetBlank": true,
+                      "title": "",
+                      "url": "$url/$org/${__data.fields.Project}/_build/results?buildId=${__data.fields.Id}"
+                    }
+                  ],
+                  "custom": {
+                    "align": "auto",
+                    "cellOptions": {
+                      "type": "auto"
+                    },
+                    "footer": {
+                      "reducers": []
+                    },
+                    "inspect": false
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Duration"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "ms"
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Queue time"
+                    },
+                    "properties": [
+                      {
+                        "id": "unit",
+                        "value": "ms"
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Id"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hideFrom.viz",
+                        "value": true
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Project"
+                    },
+                    "properties": [
+                      {
+                        "id": "custom.hideFrom.viz",
+                        "value": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-6": {
+        "kind": "Panel",
+        "spec": {
+          "id": 6,
+          "title": "Build durations",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "grafana-azuredevops-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "bff64crgzkyrkd"
+                      },
+                      "spec": {
+                        "buildsFilter": {
+                          "repositoryId": "",
+                          "repositoryType": ""
+                        },
+                        "projectID": "$project",
+                        "queryType": "build/builds/list"
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "calculateField",
+                  "spec": {
+                    "id": "calculateField",
+                    "options": {
+                      "alias": "Duration",
+                      "binary": {
+                        "left": "FinishTime",
+                        "operator": "-",
+                        "reducer": "sum",
+                        "right": "StartTime"
+                      },
+                      "mode": "binary",
+                      "reduce": {
+                        "reducer": "sum"
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "calculateField",
+                  "spec": {
+                    "id": "calculateField",
+                    "options": {
+                      "alias": "Queue time",
+                      "binary": {
+                        "left": "StartTime",
+                        "operator": "-",
+                        "reducer": "sum",
+                        "right": "QueueTime"
+                      },
+                      "mode": "binary",
+                      "reduce": {
+                        "reducer": "sum"
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "organize",
+                  "spec": {
+                    "id": "organize",
+                    "options": {
+                      "excludeByName": {
+                        "BuildNumber": true,
+                        "FinishTime": true,
+                        "Id": true,
+                        "KeepForever": true,
+                        "Priority": true,
+                        "Project": true,
+                        "Quality": true,
+                        "Queue time": true,
+                        "QueueTime": true,
+                        "Reason": true,
+                        "Repository": true,
+                        "RequestedBy": true,
+                        "RequestedFor": true,
+                        "Result": false,
+                        "RetainedByRelease": true,
+                        "SourceBranch": true,
+                        "SourceVersion": true,
+                        "StartTime": false,
+                        "Status": true,
+                        "Tags": true,
+                        "Uri": true,
+                        "Url": true
+                      },
+                      "indexByName": {},
+                      "renameByName": {}
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "barchart",
+            "version": "13.0.0-22843068776.patch2",
+            "spec": {
+              "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "colorByField": "Result",
+                "fullHighlight": false,
+                "groupWidth": 0.7,
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "orientation": "auto",
+                "showValue": "auto",
+                "stacking": "none",
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                },
+                "xField": "StartTime",
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "ms",
+                  "mappings": [
+                    {
+                      "type": "value",
+                      "options": {
+                        "canceled": {
+                          "color": "#c3c3c3",
+                          "index": 2
+                        },
+                        "failed": {
+                          "color": "red",
+                          "index": 0
+                        },
+                        "succeeded": {
+                          "color": "green",
+                          "index": 1
+                        }
+                      }
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "transparent"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "fillOpacity": 80,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "lineWidth": 1,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "layout": {
+      "kind": "GridLayout",
+      "spec": {
+        "items": [
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 0,
+              "width": 10,
+              "height": 10,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-1"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 10,
+              "y": 0,
+              "width": 14,
+              "height": 10,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-5"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 10,
+              "width": 10,
+              "height": 10,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-4"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 10,
+              "y": 10,
+              "width": 14,
+              "height": 10,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-6"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "links": [],
+    "liveNow": false,
+    "preload": false,
+    "tags": [],
+    "timeSettings": {
+      "timezone": "browser",
+      "from": "now-6h",
+      "to": "now",
+      "autoRefresh": "",
+      "autoRefreshIntervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "hideTimepicker": false,
+      "fiscalYearStartMonth": 0
+    },
+    "title": "Project overview 1",
+    "variables": [
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "project",
+          "current": {
+            "text": "aat",
+            "value": "2529e405-8562-430e-b84e-372be4c44612"
+          },
+          "label": "Project",
+          "hide": "dontHide",
+          "refresh": "onTimeRangeChanged",
+          "skipUrlSync": false,
+          "description": "Azure DevOps project",
+          "query": {
+            "kind": "DataQuery",
+            "group": "grafana-azuredevops-datasource",
+            "version": "v0",
+            "datasource": {
+              "name": "bff64crgzkyrkd"
+            },
+            "spec": {
+              "queryType": "projects"
+            }
+          },
+          "regex": "",
+          "regexApplyTo": "value",
+          "sort": "disabled",
+          "definition": "projects",
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "allowCustomValue": true
+        }
+      },
+      {
+        "kind": "ConstantVariable",
+        "spec": {
+          "name": "url",
+          "query": "https://dev.azure.com",
+          "current": {
+            "text": "https://dev.azure.com",
+            "value": "https://dev.azure.com"
+          },
+          "label": "URL",
+          "hide": "hideVariable",
+          "skipUrlSync": true,
+          "description": "Azure DevOps URL"
+        }
+      },
+      {
+        "kind": "TextVariable",
+        "spec": {
+          "name": "org",
+          "current": {
+            "text": "raintank",
+            "value": "raintank"
+          },
+          "query": "raintank",
+          "label": "org",
+          "hide": "dontHide",
+          "skipUrlSync": false,
+          "description": "Azure DevOps organization"
+        }
+      }
+    ]
+  }
+}
