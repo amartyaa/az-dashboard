@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_GRAFANACLOUD-SS3RG3-LOGS",
-      "label": "grafanacloud-ss3rg3-logs",
+      "name": "DS_GRAFANACLOUD-chipotle-LOGS",
+      "label": "grafanacloud-chipotle-logs",
       "description": "",
       "type": "datasource",
       "pluginId": "loki",
@@ -63,7 +63,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_GRAFANACLOUD-SS3RG3-LOGS}"
+        "uid": "${DS_GRAFANACLOUD-chipotle-LOGS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -136,7 +136,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_GRAFANACLOUD-SS3RG3-LOGS}"
+            "uid": "${DS_GRAFANACLOUD-chipotle-LOGS}"
           },
           "editorMode": "code",
           "expr": "sum(count_over_time({namespace=~\"$namespace\", pod=~\"$pod\"} |~ \"$search\"[$__interval]))",
@@ -149,7 +149,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "${DS_GRAFANACLOUD-SS3RG3-LOGS}"
+        "uid": "${DS_GRAFANACLOUD-chipotle-LOGS}"
       },
       "gridPos": {
         "h": 16,
@@ -172,7 +172,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "${DS_GRAFANACLOUD-SS3RG3-LOGS}"
+            "uid": "${DS_GRAFANACLOUD-chipotle-LOGS}"
           },
           "editorMode": "code",
           "expr": "{namespace=~\"$namespace\", pod=~\"$pod\"} |~ \"(?i)$search\"",
@@ -195,7 +195,7 @@
         "current": {},
         "datasource": {
           "type": "loki",
-          "uid": "${DS_GRAFANACLOUD-SS3RG3-LOGS}"
+          "uid": "${DS_GRAFANACLOUD-chipotle-LOGS}"
         },
         "definition": "",
         "hide": 0,
@@ -221,7 +221,7 @@
         "current": {},
         "datasource": {
           "type": "loki",
-          "uid": "${DS_GRAFANACLOUD-SS3RG3-LOGS}"
+          "uid": "${DS_GRAFANACLOUD-chipotle-LOGS}"
         },
         "definition": "",
         "hide": 0,
@@ -303,9 +303,5 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Kubernetes Logs from Loki",
-  "uid": "ae3ec2c4-1c19-4450-9403-226270fe0c4f",
-  "version": 8,
-  "weekStart": "",
-  "gnetId": 18494
+  "title": "Kubernetes Logs from Loki"
 }
