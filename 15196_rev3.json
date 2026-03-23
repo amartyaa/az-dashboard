@@ -91,7 +91,10 @@
   "panels": [
     {
       "collapsed": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -105,7 +108,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to:   kubectl get nodes\n-\n\nFor more details use dashboards:\n- \n- Default / Nodes",
       "fieldConfig": {
         "defaults": {
@@ -189,7 +195,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to:  kubectl get namespace\n-",
       "fieldConfig": {
         "defaults": {
@@ -265,7 +274,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to:   kubectl get pod \n-",
       "fieldConfig": {
         "defaults": {
@@ -353,7 +365,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to:   kubectl get pods |grep Running\n-",
       "fieldConfig": {
         "defaults": {
@@ -437,7 +452,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to:   kubectl get pods |grep -v Running",
       "fieldConfig": {
         "defaults": {
@@ -525,7 +543,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -609,7 +630,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to:   kubectl get nodes  (filter by Age)\n-",
       "fieldConfig": {
         "defaults": {
@@ -684,7 +708,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "similar to:   kubectl get deployments\n-",
       "fieldConfig": {
         "defaults": {
@@ -766,7 +793,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to:   kubectl get configmap\n-",
       "fieldConfig": {
         "defaults": {
@@ -850,7 +880,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to:   kubectl get ingress\n-",
       "fieldConfig": {
         "defaults": {
@@ -926,7 +959,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to:   kubectl get secrets\n-",
       "fieldConfig": {
         "defaults": {
@@ -1002,7 +1038,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Show Persisten Volumes\n-\n\nFor more details use dashboard\n-\n- Default / kubernetes / Persistent Volumes",
       "fieldConfig": {
         "defaults": {
@@ -1081,7 +1120,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -1164,7 +1206,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -1248,7 +1293,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to run:   kubectl  -n $namespace get pod -o wide\n-\n-\n\nFor more detail use dashboards:  \n- \n- Default /  Kubernetes / Compute Resources / Workload\n- Default / Logs by App  \n- Default / Data and Info\n\n",
       "fieldConfig": {
         "defaults": {
@@ -1777,7 +1825,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "The CrashLoopBackOff:\n-\n\n* Insufficient resources—lack of resources prevents the container from loading\n* Locked file—a file was already locked by another container\n* Locked database—the database is being used and locked by other pods\n* Failed reference—reference to scripts or binaries that are not present on the container\n* Setup error—an issue with the init-container setup in Kubernetes\n* Config loading error—a server cannot load the configuration file\n* Misconfigurations—a general file system misconfiguration\n* Connection issues—DNS or kube-DNS is not able to connect to a third-party service\n* Deploying failed services—an attempt to deploy services/applications that have already failed (e.g. due to a lack of access to other services)\n\nThe ImagePullBackOff:\n-----------------------------------\n\nmeans that a Pod couldn’t start because Kubernetes could not pull a container image. The ‘BackOff’ part indicates that Kubernetes will keep trying to pull the image, with an increasing back-off delay.  \n- check  if image exist\n- check if image tag is correct\n- check if you have the secret to pull image from private registry\n- check if  the value \"imagePullSecrets\" is right configured in your deployment  (use GIT repo to check it)\n\n-\n\nFor more details use dashboards:  \n-\n- Default / Logs by App\n- Default / Data and Info",
       "fieldConfig": {
         "defaults": {
@@ -1980,7 +2031,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to run:   kubectl get pv \n-\n\n-\n\nFor more detail use dashboard:   \n-\n- Default / Kubernetes / Persistent Volumes",
       "fieldConfig": {
         "defaults": {
@@ -2075,7 +2129,10 @@
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -2179,7 +2236,10 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "description": "Similar to run:  kubectl get ingress\n-",
       "fieldConfig": {
         "defaults": {
@@ -2751,7 +2811,10 @@
       {
         "allValue": "",
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
         "definition": "label_values(kube_node_created,node)",
         "description": null,
         "error": null,
@@ -2777,7 +2840,10 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
         "definition": "query_result(kube_namespace_labels)",
         "description": null,
         "error": null,
@@ -2803,7 +2869,10 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
         "definition": "kube_pod_container_status_waiting_reason{namespace=\"$namespace\"}",
         "description": null,
         "error": null,
